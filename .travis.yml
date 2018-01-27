@@ -3,7 +3,8 @@ rvm:
   - 2.4.1
 before_install: gem install bundler -v 1.16.0
 before_script:
-  - mysqld &
+  - echo -e "[server]\nwait_timeout=28800" | sudo tee -a /etc/mysql/my.cnf
+  - sudo service mysql restart
   - rake db:create RAILS_ENV=test
   - rake db:migrate RAILS_ENV=test
   - rake db:seed RAILS_ENV=test
