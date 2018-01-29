@@ -1,5 +1,11 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe Doctor, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Doctor do
+  describe '#recent_average_rating' do
+    let(:doctor) { FactoryBot.build_stubbed(:doctor) }
+    before(:each) { expect(Comment).to receive(:recent_average_rating_for).with(doctor) { 3 } }
+    it 'returns what Comment.recent_average_rating_for returns' do
+      expect(doctor.recent_average_rating).to eq 3
+    end
+  end
 end

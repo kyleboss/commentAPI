@@ -28,6 +28,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
+# Official Geokit plugin for Rails/ActiveRecord. Provides location-based goodness for your Rails app. Requires the
+# Geokit gem.
+gem 'geokit-rails', '~> 2.3.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -46,6 +49,10 @@ group :test do
   # Code coverage for Ruby 1.9+ with a powerful configuration library and automatic merging of coverage across test
   # suites
   gem 'simplecov', '~> 0.15.1'
+
+  # Strategies for cleaning databases in Ruby. Can be used to ensure a clean state for testing.
+  # http://databasecleaner.github.io
+  gem 'database_cleaner', '~> 1.6.2'
 end
 
 group :development do

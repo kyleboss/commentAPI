@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_01_27_182502) do
+ActiveRecord::Schema.define(version: 2018_01_28_202533) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -54,12 +54,16 @@ ActiveRecord::Schema.define(version: 2018_01_27_182502) do
   create_table "doctors", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "group_id"
     t.string "name", null: false
-    t.string "address", null: false
+    t.string "street_address", null: false
+    t.string "zip_code", null: false
+    t.string "city", null: false
+    t.string "state", null: false
     t.decimal "latitude", precision: 10, scale: 6, null: false
     t.decimal "longitude", precision: 10, scale: 6, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_doctors_on_group_id"
+    t.index ["latitude", "longitude"], name: "index_doctors_on_latitude_and_longitude"
   end
 
   create_table "doctors_specialties", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class DoctorsSpecialtiesController < ApplicationController
-  before_action :set_doctors_specialty, only: [:show, :update, :destroy]
+  before_action :set_doctors_specialty, only: %i[show update destroy]
 
   # GET /doctors_specialties
   def index
@@ -39,13 +41,14 @@ class DoctorsSpecialtiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_doctors_specialty
-      @doctors_specialty = DoctorsSpecialty.find(params[:id])
-    end
 
-    # Only allow a trusted parameter "white list" through.
-    def doctors_specialty_params
-      params.require(:doctors_specialty).permit(:doctor_id, :specialty_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_doctors_specialty
+    @doctors_specialty = DoctorsSpecialty.find(params[:id])
+  end
+
+  # Only allow a trusted parameter "white list" through.
+  def doctors_specialty_params
+    params.require(:doctors_specialty).permit(:doctor_id, :specialty_id)
+  end
 end
