@@ -39,7 +39,7 @@ class Recommendation
 
   # Find 100 closest doctors to a given doctor who is not the current doctor
   def self.doctors_close_to(doctor)
-    Doctor.by_distance(origin: [doctor.latitude, doctor.longitude]).where.not(doctor: doctor).limit(100)
+    Doctor.by_distance(origin: [doctor.latitude, doctor.longitude]).where.not(id: doctor.id).limit(100)
   end
 
   # Given a list of doctors, returns only those doctors whom lately have received positive ratings.

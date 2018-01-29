@@ -4,13 +4,9 @@ describe GroupsController do
   # This should return the minimal set of attributes required to create a valid
   # Group. As you add validations to Group, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
-  end
+  let(:valid_attributes) { { } }
 
-  let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
-  end
+  let(:invalid_attributes) { { } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -48,44 +44,17 @@ describe GroupsController do
         expect(response.location).to eq(group_url(Group.last))
       end
     end
-
-    context 'with invalid params' do
-      it 'renders a JSON response with errors for the new group' do
-        post :create, params: { group: invalid_attributes }, session: valid_session
-        expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
-      end
-    end
   end
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
-
-      it 'updates the requested group' do
-        group = Group.create! valid_attributes
-        put :update, params: { id: group.to_param, group: new_attributes }, session: valid_session
-        group.reload
-        skip('Add assertions for updated state')
-      end
+      let(:new_attributes) { { } }
 
       it 'renders a JSON response with the group' do
         group = Group.create! valid_attributes
 
         put :update, params: { id: group.to_param, group: valid_attributes }, session: valid_session
         expect(response).to have_http_status(:ok)
-        expect(response.content_type).to eq('application/json')
-      end
-    end
-
-    context 'with invalid params' do
-      it 'renders a JSON response with errors for the group' do
-        group = Group.create! valid_attributes
-
-        put :update, params: { id: group.to_param, group: invalid_attributes }, session: valid_session
-        expect(response).to have_http_status(:unprocessable_entity)
         expect(response.content_type).to eq('application/json')
       end
     end

@@ -4,13 +4,14 @@ describe CommentsController do
   # This should return the minimal set of attributes required to create a valid
   # Comment. As you add validations to Comment, be sure to
   # adjust the attributes here as well.
+  let(:doctor) { FactoryBot.create(:doctor) }
+  let(:author) { FactoryBot.create(:author) }
+  let(:comment) { FactoryBot.build_stubbed(:comment, doctor: doctor, author: author) }
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    { doctor_id: doctor.id, body: comment.body, rating: comment.rating, author_id: author.id,
+      is_active: comment.is_active }
   end
-
-  let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
-  end
+  let(:invalid_attributes) { { body: nil } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -21,7 +22,7 @@ describe CommentsController do
     it 'returns a success response' do
       comment = Comment.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -29,7 +30,7 @@ describe CommentsController do
     it 'returns a success response' do
       comment = Comment.create! valid_attributes
       get :show, params: { id: comment.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -60,15 +61,13 @@ describe CommentsController do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
+      let(:new_attributes) { { body: 'HI!' } }
 
       it 'updates the requested comment' do
         comment = Comment.create! valid_attributes
         put :update, params: { id: comment.to_param, comment: new_attributes }, session: valid_session
         comment.reload
-        skip('Add assertions for updated state')
+        expect(comment.body).to eq 'HI!'
       end
 
       it 'renders a JSON response with the comment' do

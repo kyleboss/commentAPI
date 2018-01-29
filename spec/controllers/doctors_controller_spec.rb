@@ -4,13 +4,14 @@ describe DoctorsController do
   # This should return the minimal set of attributes required to create a valid
   # Doctor. As you add validations to Doctor, be sure to
   # adjust the attributes here as well.
+  let(:group) { FactoryBot.create(:group) }
+  let(:doctor) { FactoryBot.build_stubbed(:doctor, group: group) }
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    { name: doctor.name, street_address: doctor.street_address, zip_code: doctor.zip_code, city: doctor.city,
+      state: doctor.state, latitude: doctor.latitude, longitude: doctor.longitude, group_id: group.id}
   end
 
-  let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
-  end
+  let(:invalid_attributes) { { name: nil } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -21,7 +22,7 @@ describe DoctorsController do
     it 'returns a success response' do
       doctor = Doctor.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -29,7 +30,7 @@ describe DoctorsController do
     it 'returns a success response' do
       doctor = Doctor.create! valid_attributes
       get :show, params: { id: doctor.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -60,15 +61,13 @@ describe DoctorsController do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
+      let(:new_attributes) { { name: 'Kyle' } }
 
       it 'updates the requested doctor' do
         doctor = Doctor.create! valid_attributes
         put :update, params: { id: doctor.to_param, doctor: new_attributes }, session: valid_session
         doctor.reload
-        skip('Add assertions for updated state')
+        expect(doctor.name).to eq 'Kyle'
       end
 
       it 'renders a JSON response with the doctor' do

@@ -4,13 +4,8 @@ describe AuthorsController do
   # This should return the minimal set of attributes required to create a valid
   # Author. As you add validations to Author, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
-  end
-
-  let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
-  end
+  let(:valid_attributes) { { name: 'Kyle' } }
+  let(:invalid_attributes) { { name: nil } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -21,7 +16,7 @@ describe AuthorsController do
     it 'returns a success response' do
       author = Author.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -29,7 +24,7 @@ describe AuthorsController do
     it 'returns a success response' do
       author = Author.create! valid_attributes
       get :show, params: { id: author.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -60,15 +55,13 @@ describe AuthorsController do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
+      let(:new_attributes) { { name: 'Bobby' } }
 
       it 'updates the requested author' do
         author = Author.create! valid_attributes
         put :update, params: { id: author.to_param, author: new_attributes }, session: valid_session
         author.reload
-        skip('Add assertions for updated state')
+        expect(author.name).to eq 'Bobby'
       end
 
       it 'renders a JSON response with the author' do

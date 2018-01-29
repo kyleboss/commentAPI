@@ -18,7 +18,6 @@ class CommentsController < ApplicationController
   # POST /comments
   def create
     @comment = Comment.new(comment_params)
-
     if @comment.save
       render json: [Recommendation.all_for(@comment.doctor)], status: :created, location: @comment
     else

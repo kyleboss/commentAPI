@@ -4,13 +4,11 @@ describe DoctorsSpecialtiesController do
   # This should return the minimal set of attributes required to create a valid
   # DoctorsSpecialty. As you add validations to DoctorsSpecialty, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
-  end
+  let(:doctor) { FactoryBot.create(:doctor) }
+  let(:specialty) { FactoryBot.create(:specialty) }
+  let(:valid_attributes) { { doctor_id: doctor.id, specialty_id: specialty.id } }
 
-  let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
-  end
+  let(:invalid_attributes) { { doctor_id: -1 } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -21,7 +19,7 @@ describe DoctorsSpecialtiesController do
     it 'returns a success response' do
       doctors_specialty = DoctorsSpecialty.create! valid_attributes
       get :index, params: {}, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -29,7 +27,7 @@ describe DoctorsSpecialtiesController do
     it 'returns a success response' do
       doctors_specialty = DoctorsSpecialty.create! valid_attributes
       get :show, params: { id: doctors_specialty.to_param }, session: valid_session
-      expect(response).to be_success
+      expect(response).to be_successful
     end
   end
 
@@ -60,15 +58,14 @@ describe DoctorsSpecialtiesController do
 
   describe 'PUT #update' do
     context 'with valid params' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
+      let(:new_doctor) { FactoryBot.create(:doctor) }
+      let(:new_attributes) { { doctor_id: new_doctor.id } }
 
       it 'updates the requested doctors_specialty' do
         doctors_specialty = DoctorsSpecialty.create! valid_attributes
         put :update, params: { id: doctors_specialty.to_param, doctors_specialty: new_attributes }, session: valid_session
         doctors_specialty.reload
-        skip('Add assertions for updated state')
+        expect(doctors_specialty.doctor_id).to eq new_doctor.id
       end
 
       it 'renders a JSON response with the doctors_specialty' do

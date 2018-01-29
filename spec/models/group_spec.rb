@@ -1,5 +1,4 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe Group, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe Group do
 end
