@@ -61,7 +61,10 @@ describe Recommendation do
   end
 
   describe '.doctors_close_to' do
-    before(:each) { expect(Doctor).to receive_message_chain(:by_distance, :limit) { [recommended_doctor] } }
+    before(:each) do
+      expect(Doctor).to receive_message_chain(:by_distance, :where, :not, :limit) { [recommended_doctor] }
+    end
+
     it 'returns the result of by_distance' do
       expect(Recommendation.send(:doctors_close_to, doctor)).to eq [recommended_doctor]
     end

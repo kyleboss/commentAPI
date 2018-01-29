@@ -1,10 +1,10 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe "Authors", type: :request do
-  describe "GET /authors" do
-    it "works! (now write some real specs)" do
+describe 'Authors' do
+  describe 'GET /authors' do
+    it do
       get authors_path
-      expect(response).to have_http_status(200)
+      expect(response).to be_successful
     end
   end
 end

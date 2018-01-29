@@ -1,10 +1,10 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe "Specialties", type: :request do
-  describe "GET /specialties" do
-    it "works! (now write some real specs)" do
+describe 'Specialties' do
+  describe 'GET /specialties' do
+    it do
       get specialties_path
-      expect(response).to have_http_status(200)
+      expect(response).to be_successful
     end
   end
 end

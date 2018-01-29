@@ -1,10 +1,10 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
-RSpec.describe "Groups", type: :request do
-  describe "GET /groups" do
-    it "works! (now write some real specs)" do
+describe 'Groups' do
+  describe 'GET /groups' do
+    it do
       get groups_path
-      expect(response).to have_http_status(200)
+      expect(response).to be_successful
     end
   end
 end
