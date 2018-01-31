@@ -4,7 +4,8 @@
 # specialties.
 class Doctor < ApplicationRecord
   belongs_to :group
-  has_many :specialties, through: :doctors_specialty
+  has_many :doctors_specialties
+  has_many :specialties, through: :doctors_specialties
   has_many :comments
   acts_as_mappable lat_column_name: :latitude, lng_column_name: :longitude
   validates_presence_of :group, :name, :street_address, :longitude, :latitude, :city, :state, :zip_code
