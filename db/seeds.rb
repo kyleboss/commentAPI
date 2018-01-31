@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'factory_bot_rails'
+
 # Doctor 1 is the base doctor. If you add a comment, the next best doctor in terms of both location & rating is Doctor
 # 2, thus should be recommended. Followed by doctor 3, then doctor 4
 FactoryBot.create(:doctor, name: 'Doctor 1', latitude: 37.792, longitude: -122.393)

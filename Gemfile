@@ -31,18 +31,19 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # Official Geokit plugin for Rails/ActiveRecord. Provides location-based goodness for your Rails app. Requires the
 # Geokit gem.
 gem 'geokit-rails', '~> 2.3.0'
+
+# Factory Bot ♥ Rails
+gem 'factory_bot_rails', '~> 4.8.2'
+
+# A library for generating fake data such as names, addresses, and phone numbers.
+gem 'faker', '~> 1.8.7'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 
   # RSpec for Rails-3+ http://relishapp.com/rspec/rspec-rails
   gem 'rspec-rails', '~> 3.7'
-
-  # Factory Bot ♥ Rails
-  gem 'factory_bot_rails', '~> 4.8.2'
-
-  # A library for generating fake data such as names, addresses, and phone numbers.
-  gem 'faker', '~> 1.8.7'
 end
 
 group :test do
