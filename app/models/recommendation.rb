@@ -26,7 +26,7 @@ class Recommendation
   # I chose to use as_json to serialize the data. I could've used a serializer (normally that is preferred IMO), but
   # this object is created strictly to be provided as a JSON, so I opted to go this route instead of making a
   # serializer.
-  def as_json
+  def as_json(_obj = {})
     {
       average_rating: @doctor.recent_average_rating,
       distance: @distance,

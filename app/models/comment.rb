@@ -9,6 +9,6 @@ class Comment < ApplicationRecord
   validates_associated :doctor, :author
 
   scope :recent_average_rating_for, (lambda do |doctor|
-    where(doctor: doctor).limit(100).order(created_at: :desc).average(:rating)
+    where(doctor: doctor, is_active: true).limit(100).order(created_at: :desc).average(:rating)
   end)
 end

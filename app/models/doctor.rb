@@ -15,6 +15,6 @@ class Doctor < ApplicationRecord
   # made because trends tend to be more important than long-term scores. Cached because it could be a heavy call
   # and is treated like an attribute.
   def recent_average_rating
-    @_recent_average_rating ||= Comment.recent_average_rating_for(self)
+    @_recent_average_rating ||= comments.empty? ? 0 : Comment.recent_average_rating_for(self)
   end
 end
