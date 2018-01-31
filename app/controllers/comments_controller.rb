@@ -19,7 +19,8 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(comment_params)
     if @comment.save
-      render json: Recommendation.all_for(@comment.doctor), status: :created, location: @comment
+      render json: {comment: @comment, recommendations: Recommendation.all_for(@comment.doctor)}, status: :created,
+             location: @comment
     else
       render json: @comment.errors, status: :unprocessable_entity
     end
